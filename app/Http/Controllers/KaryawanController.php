@@ -60,6 +60,13 @@ class KaryawanController extends Controller
 
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'nama'     => 'sometimes|required',
+            'email'    => 'sometimes|required|email',
+            'status'   => 'sometimes|in:Aktif,Cuti,Nonaktif',
+            'password' => 'nullable|min:6'
+        ]);
+
         $user = $this->users->updateKaryawan($id, $request->all());
 
         if (! $user) {
@@ -74,6 +81,8 @@ class KaryawanController extends Controller
             'message' => 'Karyawan berhasil diperbarui',
             'data' => $user
         ]);
+        dd($request->all());
+
     }
 
     public function destroy($id)

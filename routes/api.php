@@ -13,7 +13,3 @@ Route::middleware('auth:sanctum')->prefix('kasir')->group(function () {
 
     Route::apiResource('karyawan', KaryawanController::class);
 });
-
-Route::get('test', function () {
-    return response()->json(['ok' => true]);
-});
